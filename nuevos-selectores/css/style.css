@@ -1,0 +1,52 @@
+/*variables o propiedades personalizadas:*/
+:root{
+    --color-rojito: rgb(255, 0, 0);
+}
+
+h1{
+    font-size: 2rem;
+    color: var( --color-rojito);
+}
+
+/* li:first-child {
+    background-color: red;
+    font-size: 2rem;
+}
+
+li:nth-child(2n) {
+    background-color: aqua;
+} */
+
+/*marker:: viñeta a de los ul*/
+::marker {
+    font-size: 2rem;
+    color: blueviolet;
+    object-fit: contain;
+}
+img:hover{
+    transform: scale(1.2);
+    display: block;
+    position: relative;
+}
+
+/* div::first-letter {
+    font-size: 2rem;
+    color: red;
+} */
+
+li::after {
+    content: "--";
+    color: red;
+    font-size: 4rem;
+}
+/*DECORACIONES PARA IMAGENES*/
+img{
+    width: 550px;
+    height: auto;
+    object-fit: cover;
+}
+
+/*Continuacion de media queries*/
+@media only screen and(min-width:768px){
+
+}
