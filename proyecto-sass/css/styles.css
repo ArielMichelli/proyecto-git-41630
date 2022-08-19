@@ -1,0 +1,60 @@
+h1 {
+  color: red;
+}
+
+h2 {
+  color: blue;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+/*ejemplo de anidamiento*/
+ul {
+  list-style: none;
+}
+ul li {
+  display: flex;
+  justify-content: center;
+}
+ul li .link {
+  text-decoration: none;
+  color: papayawhip;
+}
+
+.tarjeta {
+  width: 300px;
+  height: 400px;
+}
+.tarjeta__img {
+  width: 100%;
+}
+.tarjeta__img--oferta {
+  width: 200%;
+}
+.tarjeta__title {
+  font-size: 2rem;
+}
+.tarjeta__info {
+  font-size: 1rem;
+}
+.tarjeta:hover {
+  transform: scale(1.2);
+}
+
+.hero-section {
+  height: 80vh;
+}
+
+h1 {
+  color: #ff0000;
+}
+
+h2 {
+  color: #662468;
+}
+
+/*sin Sass*/
+
+/*# sourceMappingURL=styles.css.map */
