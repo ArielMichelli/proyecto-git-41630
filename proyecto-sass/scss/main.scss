@@ -83,3 +83,182 @@ h2 {
 // .tarjeta__info{
 
 // }
+
+// otra clase //
+.tarjeta {
+    widows: 200px;
+    height: 300px;
+    background-color: blue;
+    border-radius: 15px;
+}
+
+%tarjeta {
+    widows: 220px;
+    height: 330px;
+    background-color: blue;
+    border-radius: 15px;
+}
+
+.tarjeta--ofertas {
+    @extend .tarjeta;
+    background-color: red;
+}
+
+.tarjeta--inactiva {
+    @extend %tarjeta;
+    background-color: azure;
+}
+
+// Mixins => nos va a permitir definir un molde de varios estilos que nosotros vamos a poder
+//reutilizar a lo largo de nuestro proyecto
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-tarjetas {
+    @include flex-center();
+}
+
+@mixin dflex($direction, $justify: center, $align: center) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+//ejemplo de invocacion - uso
+.contenedor-imagenes {
+    @include dflex(row, space-around, center)
+}
+
+// Mixins y MediaQueries:
+
+// tablet
+@mixin tablet {
+    @media(min-width: 768px) {
+        @content;
+    }
+}
+
+// desktop
+@mixin desktop {
+    @media(min-width:1200px) {
+        @content;
+    }
+}
+
+// movil
+@mixin movil {
+    @media(min-width:576px) {
+        @content;
+    }
+}
+
+.contenedor-tarjetas {
+    display: flex;
+
+    @include tablet {
+        background-color: red;
+
+        @include tablet {
+            display: block;
+            background-color: blue;
+        }
+
+        @include desktop {
+            background-color: black;
+        }
+
+        @include movil {
+            background-color: aqua;
+        }
+
+        &__tarjeta {
+            @extend %tarjeta;
+
+            @include desktop {
+                width: 50vw;
+            }
+        }
+    }
+}
+
+// Condicionales => mother of god if else etc
+$color: red;
+
+.color-text {
+    @if $color ==red {
+        width: 200px;
+        height: 200px;
+    }
+
+    @else if $color ==blue {
+        width: 150px;
+        height: 150px;
+    }
+
+    @else {
+        width: 100px;
+        height: 100px;
+    }
+
+}
+
+@mixin cuadrados($size, $radius: 0) {
+    width: $size;
+    height: $size;
+    border-radius: $radius;
+
+    @if $radius  !=0 {
+        border-radius: $radius;
+    }
+}
+
+.cuadrado {
+    @include cuadrados(100px);
+}
+
+// Bucles:
+
+@for $i from i through 10 {
+    .col-#{$i} {
+        width: 10% * $i;
+    }
+}
+
+// Map e Each
+$redes: (
+    twitter : blue,
+    facebook: aqua,
+    send-mail: red
+);
+
+.btn--twitter {
+    color: map-get($redes , "twitter")
+}
+
+// Iteracion de una lista, 
+@each $tamanio in (40px, 60px, 80px, 100px) {
+    .box-size--#{$tamanio} {
+        width: $tamanio;
+        height: $tamanio;
+    }
+}
+
+// pasandole la lista por parametro
+@each $red,$color in $redes {
+    .btn--#{$red}{
+        background-color: $color;
+    }
+}
+
+//listas:
+$sizes: 40px, 50px, 60px, 100px;
+@each $tamanio in $sizes{
+    .icon-#{$tamanio}{
+        font-size: $tamanio;
+        height: $tamanio;
+    } 
+}
